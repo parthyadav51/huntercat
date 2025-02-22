@@ -433,7 +433,6 @@ Please note:
 
 huntercat is a passion project developed in my free time, alongside my day job. Your support helps keep this project alive and growing. Here's how you can contribute:
 
-* Add a [GitHub Star](https://github.com/yogeshojha/huntercat) to the project.
 * Share about huntercat on social media or in blog posts
 * Nominate me for [GitHub Stars?](https://stars.github.com/nominate/)
 * Use my [DigitalOcean referral link](https://m.do.co/c/e353502d19fc) to get $100 credit (I receive $25)
