@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://huntercat.wiki"><img src=".github/screenshots/banner.gif" alt=""/></a>
+
 </p>
 
 <p align="center">
