@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     restart: always
@@ -26,7 +28,6 @@ services:
       context: ./web
     restart: always
     entrypoint: /usr/src/app/celery-entrypoint.sh
-    # command: celery -A huntercat worker --autoscale=${MAX_CONCURRENCY},${MIN_CONCURRENCY} -l INFO
     volumes:
       - ./web:/usr/src/app
       - github_repos:/usr/src/github
@@ -122,24 +123,17 @@ services:
     image: nginx:alpine
     ports:
       - 8082:8082/tcp
-      - 443:443/tcp
     depends_on:
       - web
       - db
       - redis
-    secrets:
-      - source: proxy.ca
-        target: /etc/nginx/certs/huntercat_chain.pem
-      - source: proxy.cert
-        target: /etc/nginx/certs/huntercat.pem
-      - source: proxy.key
-        target: /etc/nginx/certs/huntercat_rsa.key
     volumes:
       - ./config/nginx/huntercat.conf:/etc/nginx/conf.d/huntercat.conf:ro
       - static_volume:/usr/src/app/staticfiles/
       - scan_results:/usr/src/scan_results
     networks:
       - huntercat_network
+
   ollama:
     image: ollama/ollama
     container_name: ollama
@@ -163,11 +157,3 @@ volumes:
   scan_results:
   static_volume:
   ollama_data:
-
-secrets:
-  proxy.ca:
-    file: ./secrets/certs/huntercat_chain.pem
-  proxy.key:
-    file: ./secrets/certs/huntercat_rsa.key
-  proxy.cert:
-    file: ./secrets/certs/huntercat.pem
